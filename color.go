@@ -42,10 +42,21 @@ func Colorln(str string) {
 
 // SColor returns a colorized string
 func SColor(str string) string {
-	index := len(str) - 1
+	length := len(str)
+	index := length - 1
 
 	for index >= 0 {
 		if str[index] == '@' {
+
+			// Check for escaped @
+			if index != 0 && index != len(str)-1 {
+				if str[index-1] == '(' && str[index+1] == ')' {
+					str = str[:index-1] + "@" + str[index+2:]
+					index -= 2
+					continue
+				}
+			}
+
 			startIndex := index
 			endIndex := strings.Index(str[startIndex:], ")") + 1 + startIndex
 			part := str[startIndex:endIndex]

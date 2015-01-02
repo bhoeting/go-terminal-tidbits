@@ -24,5 +24,8 @@ term.Colorf("@green(%s), @yellow(%s)%s\n", "Hello", "world", "!")
 // Write to string
 var str1 string = term.SColor("@blue(Hello, world!)")
 var str2 string = term.SColorf("@green(%s), @yellow(%s)%s\n", "Hello", "world", "!")
+
+// Escaping @
+term.Color("@blue(brennan.hoeting)(@)@green(gmail.com)")
 ```
 
