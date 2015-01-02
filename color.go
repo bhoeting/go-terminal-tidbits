@@ -1,6 +1,7 @@
 package term
 
 import (
+	"errors"
 	"fmt"
 	"strings"
 )
@@ -48,7 +49,13 @@ func SColor(str string) string {
 			startIndex := index
 			endIndex := strings.Index(str[startIndex:], ")") + 1 + startIndex
 			part := str[startIndex:endIndex]
-			colorized := colorize(part)
+			colorized, err := colorize(part)
+
+			if err != nil {
+				fmt.Errorf("%s", err.Error())
+				break
+			}
+
 			str = str[:startIndex] + colorized + str[endIndex:]
 			index = startIndex - 1
 		}
@@ -59,10 +66,20 @@ func SColor(str string) string {
 
 // colorize returns a string formatted to
 // support *nix terminal colors
-func colorize(str string) string {
+func colorize(str string) (string, error) {
 	openParenIndex := strings.Index(str, "(")
 	closeParenIndex := strings.Index(str, ")")
+
+	if openParenIndex == -1 {
+		return str, errors.New("Could not find open paren (")
+	}
+
+	if closeParenIndex == -1 {
+		return str, errors.New("Could not find close paren )")
+	}
+
 	color := str[1:openParenIndex]
 	text := str[openParenIndex+1 : closeParenIndex]
-	return fmt.Sprint("\033[" + colors[color] + "m" + text + "\033[0m")
+
+	return fmt.Sprint("\033[" + colors[color] + "m" + text + "\033[0m"), nil
 }
