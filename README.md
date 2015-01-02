@@ -3,7 +3,9 @@
 Some simple terminal utilities for Go.
 
 ##Includes
-* Colored output
+* ✔ Colored output
+* Column formatting
+* Table display
 
 ##Install
 `go get github.com/bhoeting/terminal-tidbits/`
