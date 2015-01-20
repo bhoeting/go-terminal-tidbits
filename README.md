@@ -8,12 +8,12 @@ Some simple terminal utilities for Go.
 * Table display
 
 ##Install
-`go get github.com/bhoeting/terminal-tidbits/`
+`go get github.com/bhoeting/terminal-colors/`
 
 ##Use
 ```go
 import (
-  "github.com/bhoeting/terminal-tidbits/"
+  "github.com/bhoeting/terminal-colors/"
 )
 ```
 
