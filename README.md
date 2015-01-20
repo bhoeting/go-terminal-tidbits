@@ -1,11 +1,6 @@
-#terminal-tidbits
+#terminal-colors
 
-Some simple terminal utilities for Go.
-
-##Includes
-* ✔ Colored output
-* Column formatting
-* Table display
+A simple colored output library for Go
 
 ##Install
 `go get github.com/bhoeting/terminal-colors/`
